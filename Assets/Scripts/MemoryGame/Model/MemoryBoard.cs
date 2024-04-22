@@ -1,4 +1,4 @@
-//using System;
+using Memory.Models.States;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,6 +65,7 @@ namespace Memory.Models
                 OnPropertyChanged();
             }
         }
+        public IBoardState BoardState { get; set; }
 
         //constructor
         public MemoryBoard(int rows, int columns)
@@ -81,6 +82,8 @@ namespace Memory.Models
             }
 
             AssignMemoryCardIds();
+
+            BoardState = new BoardNoPreviewState(this);
         }
 
         private void AssignMemoryCardIds()
@@ -103,7 +106,7 @@ namespace Memory.Models
                 i++;
             }
 
-
+            //TODO: change code to actually assign random ids
 
 
             //int pairCount = Tiles.Count / 2;

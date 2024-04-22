@@ -6,7 +6,7 @@ namespace Memory.Models.States
 {
     public interface ITileState
     {
-        public TileStates State { get; }
-        public Tile Tile { get; set; }
+        public abstract TileStates State { get; }
+        public abstract Tile Tile { get; set; }
     }
 }
