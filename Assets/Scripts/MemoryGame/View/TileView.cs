@@ -17,6 +17,7 @@ namespace Memory.View
         public void OnPointerDown(PointerEventData eventData)
         {
             //TODO: implement OnPointerDown logic
+            Debug.Log("clicked a tile");
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)

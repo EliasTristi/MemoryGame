@@ -8,7 +8,8 @@ namespace Memory.View
 {
     public class MemoryBoardView : ViewBaseClass<MemoryBoard>
     {
-        [SerializeField] private GameObject _tilePrefab;
+        //variables
+        private MemoryBoard _board;
 
         public MemoryBoardView()
         {
@@ -17,7 +18,19 @@ namespace Memory.View
 
         public void SetUpMemoryBoard(MemoryBoard board, GameObject tilePrefab)
         {
+            var tiles = board.Tiles;
 
+            foreach (var tile in tiles)
+            {
+                var offset = new Vector3(-1f, 0, -1f);
+
+                var posX = transform.position.x + tile.Row + offset.x;
+                var posZ = transform.position.z + tile.Column + offset.z;
+
+                var position = new Vector3(posX, 0f, posZ);
+
+                Instantiate(tilePrefab, position, tilePrefab.transform.rotation, this.transform);
+            }
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)

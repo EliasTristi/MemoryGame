@@ -1,3 +1,4 @@
+using Memory.Models.States;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Memory.Models
         public int Row { get; }
         public int Column { get; }
         public MemoryBoard Board { get; }
+        public ITileState State { get; set; }
         public int MemoryCardID
         {
             get => _memoryCardID;
