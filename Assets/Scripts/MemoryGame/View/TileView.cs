@@ -18,6 +18,8 @@ namespace Memory.View
         {
             //TODO: implement OnPointerDown logic
             Debug.Log("clicked a tile");
+
+            Model.Board.BoardState.AddPreview(Model);
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
