@@ -4,6 +4,7 @@ using UnityEngine;
 using Memory.Models;
 using System.ComponentModel;
 using UnityEngine.EventSystems;
+using System;
 
 namespace Memory.View
 {
@@ -16,7 +17,6 @@ namespace Memory.View
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            //TODO: implement OnPointerDown logic
             Debug.Log("clicked a tile");
 
             Model.Board.BoardState.AddPreview(Model);
@@ -24,7 +24,13 @@ namespace Memory.View
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //TODO: implement Model_PropertyChanged logic
+            if (e.PropertyName.Equals(nameof(Model.State)))
+                StartAnimation();
+        }
+
+        private void StartAnimation()
+        {
+            Debug.Log("Animation started");
         }
     }
 }

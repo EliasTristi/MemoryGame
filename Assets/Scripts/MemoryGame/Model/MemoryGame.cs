@@ -12,6 +12,7 @@ public class MemoryGame : MonoBehaviour
     private MemoryBoard _board;
     [SerializeField] private GameObject _tilePrefab;
     [SerializeField] private GameObject _memoryBoard;
+    [SerializeField] private Material[] _materials;
 
     //temp
     private float _timer = 0;
