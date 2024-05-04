@@ -1,4 +1,5 @@
 using Memory.Models.States;
+using Memory.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -94,23 +95,22 @@ namespace Memory.Models
 
         private void AssignMemoryCardIds()
         {
-            //biggest ID would be the count of the Tiles list / 2
+            int j = 0;
 
-            //array with the different ID's for pairs
-
-            //random.range() to grab one of the ID for a pair
-
-            //grab a random tile and assign the random ID
-            ////when done, immediatly grab another random tile and assign same ID
-            ////after which remove the ID from the array
-
-            int i = 0;
-
-            foreach (var tile in Tiles)
+            var shuffledTiles = ExtensionMethods.Shuffle(Tiles);
+            
+            for (int i = 0; i < shuffledTiles.Count; i++)
             {
-                tile.MemoryCardID = i;
-                i++;
+                shuffledTiles[i].MemoryCardID = j;
+                
+                if (i % 2 != 0) //odd
+                {
+                    j++;
+                }
             }
+
+            //foreach (var shuffledTile in shuffledTiles)
+            //    Debug.Log($"{shuffledTile.ToString()} | {shuffledTile.MemoryCardID}");
         }
 
         public override string ToString()
