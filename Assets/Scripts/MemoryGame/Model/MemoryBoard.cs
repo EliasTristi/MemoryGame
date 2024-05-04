@@ -67,6 +67,10 @@ namespace Memory.Models
         }
         public IBoardState BoardState { get; set; }
 
+        //CHECK: this needs to be adjusted
+        public Player PlayerOne { get; set; }
+        public Player PlayerTwo { get; set; }
+
         //constructor
         public MemoryBoard(int rows, int columns)
         {
@@ -77,7 +81,9 @@ namespace Memory.Models
             {
                 for (int column = 0; column < Columns; column++)
                 {
-                    Tiles.Add(new Tile(row, column, this));
+                    var tile = new Tile(row, column, this);
+                    tile.State = new TileHiddenState(tile);
+                    Tiles.Add(tile);
                 }
             }
 
@@ -105,50 +111,6 @@ namespace Memory.Models
                 tile.MemoryCardID = i;
                 i++;
             }
-
-            //TODO: change code to actually assign random ids
-
-
-            //int pairCount = Tiles.Count / 2;
-
-            //// List to keep track of assigned IDs
-            //List<int> assignedIds = new List<int>();
-
-            //for (int id = 0; id < pairCount; id++)
-            //{
-            //    // Each ID should be assigned to two tiles
-            //    for (int j = 0; j < 2; j++)
-            //    {
-            //        Tile tile;
-            //        do
-            //        {
-            //            // Randomly select a tile
-            //            tile = Tiles[Random.Range(0, Tiles.Count)];
-            //        }
-            //        // Ensure this tile has not already been assigned an ID
-            //        while (assignedIds.Contains(tile.MemoryCardID));
-
-            //        // Assign the ID to the tile
-            //        // Assuming your Tile class has a method to set its ID
-            //        tile.MemoryCardID = id;
-
-            //        // Mark this tile as having been assigned an ID
-            //        assignedIds.Add(tile.MemoryCardID);
-            //    }
-            //}
-
-            //// If there is an odd number of tiles, assign the last unique ID to the remaining tile
-            //if (Tiles.Count % 2 != 0)
-            //{
-            //    for (int i = 0; i < Tiles.Count; i++)
-            //    {
-            //        if (!assignedIds.Contains(Tiles[i].MemoryCardID))
-            //        {
-            //            Tiles[i].MemoryCardID = pairCount;
-            //            break; // Exit the loop once the last ID is assigned
-            //        }
-            //    }
-            //}
         }
 
         public override string ToString()

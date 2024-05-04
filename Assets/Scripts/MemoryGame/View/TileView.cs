@@ -17,7 +17,9 @@ namespace Memory.View
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("clicked a tile");
+            Debug.Log(Model.State);
+
+
 
             Model.Board.BoardState.AddPreview(Model);
         }

@@ -1,4 +1,5 @@
 using Memory.Models;
+using Memory.Models.States;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Memory.View
 
         public void SetUpMemoryBoard(MemoryBoard board, GameObject tilePrefab)
         {
+            _board = board;
+
             var tiles = board.Tiles;
 
             foreach (var tile in tiles)
@@ -29,7 +32,9 @@ namespace Memory.View
 
                 var position = new Vector3(posX, 0f, posZ);
 
-                Instantiate(tilePrefab, position, tilePrefab.transform.rotation, this.transform);
+                var newTile = Instantiate(tilePrefab, position, tilePrefab.transform.rotation, this.transform);
+                
+                newTile.GetComponent<TileView>().Model = tile;
             }
         }
 
