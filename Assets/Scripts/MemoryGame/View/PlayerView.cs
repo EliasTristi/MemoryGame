@@ -13,25 +13,25 @@ namespace Memory.View
         [SerializeField] private GameObject _score;
         [SerializeField] private GameObject _elapsed;
 
-        private TextMeshProUGUI _nameText;
-        private TextMeshProUGUI _scoreText;
-        private TextMeshProUGUI _elapsedText;
+        private string _nameText;
+        private string _scoreText;
+        private string _elapsedText;
+        private bool _isActive;
 
         public PlayerView()
         {
-            Model = new Player();
-        }
+            _nameText = _name.GetComponent<TextMeshProUGUI>().text;
+            _scoreText = _score.GetComponent<TextMeshProUGUI>().text;
+            _elapsedText = _elapsed.GetComponent<TextMeshProUGUI>().text;
 
-        private void Start()
-        {
-            _nameText = _name.GetComponent<TextMeshProUGUI>();
-            _scoreText = _score.GetComponent<TextMeshProUGUI>();
-            _elapsedText = _elapsed.GetComponent<TextMeshProUGUI>();
+            Model = new Player(_nameText, int.Parse(_scoreText), _isActive, float.Parse(_elapsedText));
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             //TODO: implement player view logic
+
+            
         }
     }
 }

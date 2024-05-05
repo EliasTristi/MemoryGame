@@ -12,6 +12,11 @@ namespace Memory.Models
         private bool _isActive;
         private float _elapsed;
 
+        //time variables
+        private int _mm;
+        private int _ss;
+        private int _ms;
+
         //properties
         public string Name
         {
@@ -33,7 +38,7 @@ namespace Memory.Models
                 OnPropertyChanged();
             }
         }
-        public bool IsActive
+        public bool IsActivePlayer
         {
             get => _isActive;
             set
@@ -52,6 +57,19 @@ namespace Memory.Models
                 _elapsed = value;
                 OnPropertyChanged();
             }
+        }
+
+        //time properties
+        public int MM => _mm = (int)(Elapsed / 60);
+        public int SS => _ss = (int)(Elapsed % 60);
+        public int ms => _ms = (int)((Elapsed % 1) / 1000);
+
+        public Player(string name, int score, bool isActive, float elapsed)
+        {
+            Name = name;
+            Score = score;
+            IsActivePlayer = isActive;
+            Elapsed = elapsed;
         }
     }
 }

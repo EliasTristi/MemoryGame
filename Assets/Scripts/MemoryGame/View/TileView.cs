@@ -22,7 +22,7 @@ namespace Memory.View
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(Model.State)))
+            if (e.PropertyName.Equals(nameof(Model.State.State)))
                 StartAnimation();
         }
 
