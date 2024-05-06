@@ -20,11 +20,12 @@ namespace Memory.View
 
         public PlayerView()
         {
-            _nameText = _name.GetComponent<TextMeshProUGUI>().text;
-            _scoreText = _score.GetComponent<TextMeshProUGUI>().text;
-            _elapsedText = _elapsed.GetComponent<TextMeshProUGUI>().text;
+            Debug.Log(_name);
+            //_nameText = _name.GetComponent<TextMeshPro>().text;
+            //_scoreText = _score.GetComponent<TextMeshPro>().text;
+            //_elapsedText = _elapsed.GetComponent<TextMeshPro>().text;
 
-            Model = new Player(_nameText, int.Parse(_scoreText), _isActive, float.Parse(_elapsedText));
+            //Model = new Player(_nameText, int.Parse(_scoreText), _isActive, float.Parse(_elapsedText));
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -22,15 +22,14 @@ namespace Memory.View
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(Model.State.State)))
+            if (e.PropertyName.Equals(nameof(Model)))
                 StartAnimation();
         }
 
         private void StartAnimation()
         {
-            Debug.Log("Animation started");
-            //var animator = new Animator();
-            //animator.Play("Show");
+            var animator = GetComponent<Animator>();
+            animator.Play("Shown");
         }
     }
 }
