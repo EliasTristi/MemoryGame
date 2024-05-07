@@ -10,19 +10,17 @@ namespace Memory.View
 {
     public class TileView : ViewBaseClass<Tile>, IPointerDownHandler
     {
-        public TileView()
-        {
-            //default
-        }
+        public GameObject TileTopFace;
 
         public void OnPointerDown(PointerEventData eventData)
         {
             Model.Board.BoardState.AddPreview(Model);
+            Debug.Log(Model.State.ToString());
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(Model)))
+            if (e.PropertyName.Equals(nameof(Model.State)))
                 StartAnimation();
         }
 

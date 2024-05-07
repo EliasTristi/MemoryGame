@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0692d312220f649ba16d784bae7d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileTopFace: {fileID: 5402579036110678668}
 --- !u!1 &5402579036110678668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5791167267118436254, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}

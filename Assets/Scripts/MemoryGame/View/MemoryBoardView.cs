@@ -17,7 +17,7 @@ namespace Memory.View
             //default
         }
 
-        public void SetUpMemoryBoard(MemoryBoard board, GameObject tilePrefab)
+        public void SetUpMemoryBoard(MemoryBoard board, GameObject tilePrefab, Material[] materials)
         {
             _board = board;
 
@@ -26,14 +26,15 @@ namespace Memory.View
             foreach (var tile in tiles)
             {
                 var offset = new Vector3(-1f, 0, -1f);
-
                 var posX = transform.position.x + tile.Row + offset.x;
                 var posZ = transform.position.z + tile.Column + offset.z;
-
                 var position = new Vector3(posX, 0f, posZ);
 
                 var newTile = Instantiate(tilePrefab, position, tilePrefab.transform.rotation, this.transform);
-                
+
+                var tileFace = newTile.GetComponent<TileView>().TileTopFace;
+                tileFace.GetComponent<Renderer>().sharedMaterial = materials[tile.MemoryCardID];
+
                 newTile.GetComponent<TileView>().Model = tile;
             }
         }

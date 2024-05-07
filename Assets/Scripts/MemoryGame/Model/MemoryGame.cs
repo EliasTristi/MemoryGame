@@ -25,19 +25,11 @@ public class MemoryGame : MonoBehaviour
         _board = new MemoryBoard(3, 3);
 
         var boardView = _memoryBoard.GetComponent<MemoryBoardView>();
-        boardView.SetUpMemoryBoard(_board, _tilePrefab);
+        boardView.SetUpMemoryBoard(_board, _tilePrefab, _materials);
     }
 
     void Update()
     {
-        //_timer += Time.deltaTime;
-
-        //if (_timer >= _interval)
-        //{
-        //    foreach (var tile in _board.Tiles)
-        //        Debug.Log(tile.ToString() + $" {tile.MemoryCardID}");
-
-        //    _timer = 0;
-        //}
+        
     }
 }

@@ -103,14 +103,12 @@ namespace Memory.Models
             {
                 shuffledTiles[i].MemoryCardID = j;
                 
+
                 if (i % 2 != 0) //odd
                 {
                     j++;
                 }
             }
-
-            //foreach (var shuffledTile in shuffledTiles)
-            //    Debug.Log($"{shuffledTile.ToString()} | {shuffledTile.MemoryCardID}");
         }
 
         public override string ToString()

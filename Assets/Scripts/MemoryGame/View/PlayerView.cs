@@ -13,26 +13,36 @@ namespace Memory.View
         [SerializeField] private GameObject _score;
         [SerializeField] private GameObject _elapsed;
 
-        private string _nameText;
-        private string _scoreText;
-        private string _elapsedText;
-        private bool _isActive;
-
-        public PlayerView()
+        private void Update()
         {
-            Debug.Log(_name);
-            //_nameText = _name.GetComponent<TextMeshPro>().text;
-            //_scoreText = _score.GetComponent<TextMeshPro>().text;
-            //_elapsedText = _elapsed.GetComponent<TextMeshPro>().text;
+            //CHECK: can be changed to normal method and put into memory game update
 
-            //Model = new Player(_nameText, int.Parse(_scoreText), _isActive, float.Parse(_elapsedText));
+            if (Model.IsActivePlayer)
+            {
+                Model.Elapsed += Time.deltaTime;
+            }
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             //TODO: implement player view logic
 
-            
+            var nameText = _name.GetComponent<TextMeshProUGUI>().text;
+            var scoreText = _score.GetComponent<TextMeshProUGUI>().text;
+            var elapsedText = _elapsed.GetComponent<TextMeshProUGUI>().text;
+
+            switch (e.PropertyName)
+            {
+                case nameof(Model.Name):
+                    nameText = Model.Name;
+                    break;
+                case nameof(Model.Score):
+                    scoreText = $"Score: {Model.Score}";
+                    break;
+                case nameof(Model.Elapsed):
+                    elapsedText = $"{Model.MM}:{Model.SS}:{Model.MS}";
+                    break;
+            }
         }
     }
 }

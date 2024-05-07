@@ -62,7 +62,7 @@ namespace Memory.Models
         //time properties
         public int MM => _mm = (int)(Elapsed / 60);
         public int SS => _ss = (int)(Elapsed % 60);
-        public int ms => _ms = (int)((Elapsed % 1) / 1000);
+        public int MS => _ms = (int)((Elapsed % 1) / 1000);
 
         public Player(string name, int score, bool isActive, float elapsed)
         {
