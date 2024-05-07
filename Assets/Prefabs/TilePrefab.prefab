@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 687638190680240268, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}
       propertyPath: m_Name
       value: BottomFace
@@ -73,9 +77,17 @@ PrefabInstance:
       value: TilePrefab
       objectReference: {fileID: 0}
     - target: {fileID: 2583542561967583260, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2583542561967583260, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3dc089c5db87d054b87197d96ac38c8f, type: 2}
+    - target: {fileID: 4586062439123284955, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5791167267118436254, guid: c6d317090a02df149ac2f2812a1c3962, type: 3}
       propertyPath: m_Name
       value: TopFace

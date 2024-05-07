@@ -11,6 +11,34 @@ namespace Memory.View
     {
         //variables
         private MemoryBoard _board;
+        private PlayerView _playerViewOne;
+        private PlayerView _playerViewTwo;
+
+        //properties
+        public PlayerView PlayerViewOne
+        {
+            get => _playerViewOne;
+            set
+            {
+                _playerViewOne = value;
+                _playerViewOne.Model = new Player();
+                _playerViewOne.Model.Name = "Yo Momma";
+                _playerViewOne.Model.Score = 0;
+                _playerViewOne.Model.IsActivePlayer = true;
+            }
+        }
+        public PlayerView PlayerViewTwo
+        {
+            get => _playerViewTwo;
+            set
+            {
+                _playerViewTwo = value;
+                _playerViewTwo.Model = new Player();
+                _playerViewTwo.Model.Name = "Yo Dadda";
+                _playerViewTwo.Model.Score = 0;
+                _playerViewTwo.Model.IsActivePlayer = false;
+            }
+        }
 
         public MemoryBoardView()
         {

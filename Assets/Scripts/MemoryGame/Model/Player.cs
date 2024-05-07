@@ -33,7 +33,7 @@ namespace Memory.Models
             get => _score;
             set
             {
-                if (_score == value) return;
+                //if (_score == value) return;
                 _score = value;
                 OnPropertyChanged();
             }
@@ -62,14 +62,13 @@ namespace Memory.Models
         //time properties
         public int MM => _mm = (int)(Elapsed / 60);
         public int SS => _ss = (int)(Elapsed % 60);
-        public int MS => _ms = (int)((Elapsed % 1) / 1000);
+        public int MS => _ms = (int)((Elapsed % 1) * 1000);
 
-        public Player(string name, int score, bool isActive, float elapsed)
-        {
-            Name = name;
-            Score = score;
-            IsActivePlayer = isActive;
-            Elapsed = elapsed;
-        }
+        //public Player(string name, int score, bool isActive)
+        //{
+        //    Name = name;
+        //    Score = score;
+        //    IsActivePlayer = isActive;
+        //}
     }
 }

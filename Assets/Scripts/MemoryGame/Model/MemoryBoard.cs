@@ -69,8 +69,8 @@ namespace Memory.Models
         public IBoardState BoardState { get; set; }
 
         //CHECK: this needs to be adjusted
-        public Player PlayerOne { get; set; }
-        public Player PlayerTwo { get; set; }
+        //public Player PlayerOne = new Player("Yo Momma", 0, true);
+        //public Player PlayerTwo = new Player("Yo Dadda", 0, false);
 
         //constructor
         public MemoryBoard(int rows, int columns)
@@ -103,7 +103,6 @@ namespace Memory.Models
             {
                 shuffledTiles[i].MemoryCardID = j;
                 
-
                 if (i % 2 != 0) //odd
                 {
                     j++;

@@ -27,20 +27,23 @@ namespace Memory.View
         {
             //TODO: implement player view logic
 
-            var nameText = _name.GetComponent<TextMeshProUGUI>().text;
-            var scoreText = _score.GetComponent<TextMeshProUGUI>().text;
-            var elapsedText = _elapsed.GetComponent<TextMeshProUGUI>().text;
+            Debug.Log(Model.Name);
+            var nameUI = _name.GetComponent<TextMeshProUGUI>();
+            var scoreUI = _score.GetComponent<TextMeshProUGUI>();
+            var elapsedUI = _elapsed.GetComponent<TextMeshProUGUI>();
 
             switch (e.PropertyName)
             {
                 case nameof(Model.Name):
-                    nameText = Model.Name;
+                    nameUI.text = Model.Name;
+                    nameUI.color = Color.red;
                     break;
                 case nameof(Model.Score):
-                    scoreText = $"Score: {Model.Score}";
+                    //Debug.Log(Model.Score);
+                    scoreUI.text = $"Score: {Model.Score}";
                     break;
                 case nameof(Model.Elapsed):
-                    elapsedText = $"{Model.MM}:{Model.SS}:{Model.MS}";
+                    elapsedUI.text = $"{Model.MM}:{Model.SS}:{Model.MS}";
                     break;
             }
         }

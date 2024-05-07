@@ -25,6 +25,10 @@ public class MemoryGame : MonoBehaviour
         _board = new MemoryBoard(3, 3);
 
         var boardView = _memoryBoard.GetComponent<MemoryBoardView>();
+
+        boardView.PlayerViewOne = _playerOne.GetComponent<PlayerView>();
+        boardView.PlayerViewTwo = _playerTwo.GetComponent<PlayerView>();
+        
         boardView.SetUpMemoryBoard(_board, _tilePrefab, _materials);
     }
 
