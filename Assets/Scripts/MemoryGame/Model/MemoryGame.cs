@@ -20,7 +20,7 @@ public class MemoryGame : MonoBehaviour
     private float _timer = 0;
     private float _interval = 2f;
 
-    void Start()
+    void Awake()
     {
         _board = new MemoryBoard(3, 3);
 

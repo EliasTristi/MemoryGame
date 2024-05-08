@@ -2,6 +2,7 @@ using Memory.Models.States;
 using Memory.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Memory.Models
@@ -14,6 +15,8 @@ namespace Memory.Models
         private List<Tile> _tiles = new List<Tile>();
         private List<Tile> _previewingTiles = new List<Tile>();
         private bool _isCombinationFound;
+        private Player _playerOne;
+        private Player _playerTwo;
 
         //properties
         public int Rows
@@ -68,9 +71,10 @@ namespace Memory.Models
         }
         public IBoardState BoardState { get; set; }
 
-        //CHECK: this needs to be adjusted
-        //public Player PlayerOne = new Player("Yo Momma", 0, true);
-        //public Player PlayerTwo = new Player("Yo Dadda", 0, false);
+        //CHECK: this is a WIP
+        public Player PlayerOne { get; set; }
+        public Player PlayerTwo { get; set; }
+
 
         //constructor
         public MemoryBoard(int rows, int columns)
@@ -108,6 +112,16 @@ namespace Memory.Models
                     j++;
                 }
             }
+        }
+
+        public void CheckCombination()
+        {
+            var list = PreviewingTiles;
+
+            if (list == null) return;
+
+            var firstID = list[0].MemoryCardID;
+            list.All(t => t.MemoryCardID == firstID);
         }
 
         public override string ToString()

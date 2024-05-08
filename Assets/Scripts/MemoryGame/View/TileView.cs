@@ -15,7 +15,6 @@ namespace Memory.View
         public void OnPointerDown(PointerEventData eventData)
         {
             Model.Board.BoardState.AddPreview(Model);
-            Debug.Log(Model.State.ToString());
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)

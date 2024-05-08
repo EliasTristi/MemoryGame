@@ -21,10 +21,8 @@ namespace Memory.View
             set
             {
                 _playerViewOne = value;
-                _playerViewOne.Model = new Player();
-                _playerViewOne.Model.Name = "Yo Momma";
-                _playerViewOne.Model.Score = 0;
-                _playerViewOne.Model.IsActivePlayer = true;
+                _playerViewOne.Model = new Player("Ben", 0, true);
+
             }
         }
         public PlayerView PlayerViewTwo
@@ -33,10 +31,7 @@ namespace Memory.View
             set
             {
                 _playerViewTwo = value;
-                _playerViewTwo.Model = new Player();
-                _playerViewTwo.Model.Name = "Yo Dadda";
-                _playerViewTwo.Model.Score = 0;
-                _playerViewTwo.Model.IsActivePlayer = false;
+                _playerViewTwo.Model = new Player("Ann", 0, false);
             }
         }
 
@@ -48,6 +43,9 @@ namespace Memory.View
         public void SetUpMemoryBoard(MemoryBoard board, GameObject tilePrefab, Material[] materials)
         {
             _board = board;
+
+            _board.PlayerOne = _playerViewOne.Model;
+            _board.PlayerTwo = _playerViewTwo.Model;
 
             var tiles = board.Tiles;
 

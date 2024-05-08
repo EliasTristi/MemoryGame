@@ -16,10 +16,7 @@ namespace Memory.Models.States
             if (tile.State.State != TileStates.Hidden) return;
 
             tile.State = new TilePreviewingState(tile);
-
-            //CHECK: if correct usage of _board
             tile.Board.PreviewingTiles.Add(tile);
-
             tile.Board.BoardState = new BoardOnePreviewState(tile.Board);
         }
 

@@ -64,11 +64,11 @@ namespace Memory.Models
         public int SS => _ss = (int)(Elapsed % 60);
         public int MS => _ms = (int)((Elapsed % 1) * 1000);
 
-        //public Player(string name, int score, bool isActive)
-        //{
-        //    Name = name;
-        //    Score = score;
-        //    IsActivePlayer = isActive;
-        //}
+        public Player(string name, int score, bool isActivePlayer)
+        {
+            Name = name;
+            Score = score;
+            IsActivePlayer = isActivePlayer;
+        }
     }
 }

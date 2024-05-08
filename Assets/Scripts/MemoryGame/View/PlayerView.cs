@@ -9,9 +9,29 @@ namespace Memory.View
 {
     public class PlayerView : ViewBaseClass<Player>
     {
+        //inspector variables
         [SerializeField] private GameObject _name;
         [SerializeField] private GameObject _score;
         [SerializeField] private GameObject _elapsed;
+
+        //variables
+        private TextMeshProUGUI _nameUI;
+        private TextMeshProUGUI _scoreUI;
+        private TextMeshProUGUI _elapsedUI;
+
+        private void Start()
+        {
+            _nameUI = _name.GetComponent<TextMeshProUGUI>();
+            _scoreUI = _score.GetComponent<TextMeshProUGUI>();
+            _elapsedUI = _elapsed.GetComponent<TextMeshProUGUI>();
+
+            _nameUI.text = Model.Name;
+            _scoreUI.text = $"Score: {Model.Score}";
+            _elapsedUI.text = $"{Model.MM}:{Model.SS}:{Model.MS}";
+
+            if (Model.IsActivePlayer)
+                _nameUI.color = Color.red;
+        }
 
         private void Update()
         {
@@ -27,23 +47,23 @@ namespace Memory.View
         {
             //TODO: implement player view logic
 
-            Debug.Log(Model.Name);
-            var nameUI = _name.GetComponent<TextMeshProUGUI>();
-            var scoreUI = _score.GetComponent<TextMeshProUGUI>();
-            var elapsedUI = _elapsed.GetComponent<TextMeshProUGUI>();
-
             switch (e.PropertyName)
             {
                 case nameof(Model.Name):
-                    nameUI.text = Model.Name;
-                    nameUI.color = Color.red;
+                    _nameUI.text = Model.Name;
                     break;
                 case nameof(Model.Score):
                     //Debug.Log(Model.Score);
-                    scoreUI.text = $"Score: {Model.Score}";
+                    _scoreUI.text = $"Score: {Model.Score}";
                     break;
                 case nameof(Model.Elapsed):
-                    elapsedUI.text = $"{Model.MM}:{Model.SS}:{Model.MS}";
+                    _elapsedUI.text = $"{Model.MM}:{Model.SS}:{Model.MS}";
+                    break;
+                case nameof(Model.IsActivePlayer):
+                    if (Model.IsActivePlayer) 
+                        _elapsedUI.color = Color.red;
+                    else
+                        _elapsedUI.color = Color.white;
                     break;
             }
         }
