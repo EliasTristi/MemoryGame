@@ -19,19 +19,21 @@ namespace Memory.Models.States
 
             if (tile.Board.PreviewingTiles.Count == 2)
             {
+                tile.Board.CheckCombination();
+
                 if (tile.Board.IsCombinationFound)
                 {
                     tile.Board.BoardState = new BoardTwoFoundState(tile.Board);
 
                     foreach (var prevTile in tile.Board.PreviewingTiles)
                     {
-                        prevTile.State = new TilePreviewingState(prevTile);
+                        prevTile.State = new TileFoundState(prevTile);
                     }
                 }
                 else
                 {
                     tile.Board.BoardState = new BoardTwoPreviewState(tile.Board);
-
+                    
                     tile.State = new TilePreviewingState(tile);
                 }
             }

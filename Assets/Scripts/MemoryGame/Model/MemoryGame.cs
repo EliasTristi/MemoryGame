@@ -1,4 +1,5 @@
 using Memory.Models;
+using Memory.Models.States;
 using Memory.View;
 using System;
 using System.Collections;
@@ -16,10 +17,6 @@ public class MemoryGame : MonoBehaviour
     [SerializeField] private GameObject _playerOne;
     [SerializeField] private GameObject _playerTwo;
 
-    //temp
-    private float _timer = 0;
-    private float _interval = 2f;
-
     void Awake()
     {
         _board = new MemoryBoard(3, 3);
@@ -34,6 +31,6 @@ public class MemoryGame : MonoBehaviour
 
     void Update()
     {
-        
+        Debug.Log(_board.BoardState.State);
     }
 }

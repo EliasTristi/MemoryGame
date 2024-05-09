@@ -45,8 +45,6 @@ namespace Memory.View
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //TODO: implement player view logic
-
             switch (e.PropertyName)
             {
                 case nameof(Model.Name):

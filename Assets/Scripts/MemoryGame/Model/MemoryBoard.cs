@@ -3,6 +3,7 @@ using Memory.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Memory.Models
@@ -15,6 +16,7 @@ namespace Memory.Models
         private List<Tile> _tiles = new List<Tile>();
         private List<Tile> _previewingTiles = new List<Tile>();
         private bool _isCombinationFound;
+        private IBoardState _boardState;
         private Player _playerOne;
         private Player _playerTwo;
 
@@ -69,7 +71,16 @@ namespace Memory.Models
                 OnPropertyChanged();
             }
         }
-        public IBoardState BoardState { get; set; }
+        public IBoardState BoardState
+        {
+            get => _boardState;
+            set
+            {
+                if (_boardState == value) return;
+                _boardState = value;
+                OnPropertyChanged();
+            }
+        }
 
         //CHECK: this is a WIP
         public Player PlayerOne { get; set; }
@@ -121,7 +132,9 @@ namespace Memory.Models
             if (list == null) return;
 
             var firstID = list[0].MemoryCardID;
-            list.All(t => t.MemoryCardID == firstID);
+            var isCombination = list.All(t => t.MemoryCardID == firstID);
+
+            IsCombinationFound = isCombination;
         }
 
         public override string ToString()
