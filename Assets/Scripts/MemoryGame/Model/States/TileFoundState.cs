@@ -8,7 +8,7 @@ namespace Memory.Models.States
     {
         public TileFoundState(Tile tile) : base(tile)
         {
-            //remain empty
+            State = TileStates.Found;
         }
     }
 }

@@ -5,6 +5,7 @@ using Memory.Models;
 using System.ComponentModel;
 using UnityEngine.EventSystems;
 using System;
+using Memory.Models.States;
 
 namespace Memory.View
 {
@@ -20,13 +21,36 @@ namespace Memory.View
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals(nameof(Model.State)))
-                StartAnimation();
+            {
+                StartCoroutine(StartAnimation());
+                Model.Board.BoardState.TileAnimationEnded(Model);
+            }
         }
 
-        private void StartAnimation()
+        private IEnumerator StartAnimation()
         {
             var animator = GetComponent<Animator>();
-            animator.Play("Shown");
+            
+            if (animator == null) yield break;
+
+            var currentState = Model.State.State;
+
+            switch (currentState)
+            {
+                case TileStates.Hidden:
+                    animator.Play("Hidden");
+                    break;
+                case TileStates.Preview:
+                    animator.Play("Shown");
+                    break;
+            }
+
+            animator.Update(0);
+
+            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
+            {
+                yield return null;
+            }
         }
     }
 }

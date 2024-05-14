@@ -125,16 +125,12 @@ namespace Memory.Models
             }
         }
 
-        public void CheckCombination()
+        public override void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            var list = PreviewingTiles;
-
-            if (list == null) return;
-
-            var firstID = list[0].MemoryCardID;
-            var isCombination = list.All(t => t.MemoryCardID == firstID);
-
-            IsCombinationFound = isCombination;
+            if (propertyName.Equals(nameof(BoardState)))
+            {
+                Debug.Log(BoardState.State);
+            }
         }
 
         public override string ToString()

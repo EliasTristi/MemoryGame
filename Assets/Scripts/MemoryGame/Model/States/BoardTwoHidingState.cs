@@ -18,12 +18,12 @@ namespace Memory.Models.States
 
         public override void TileAnimationEnded(Tile tile)
         {
+            tile.Board.PreviewingTiles.Remove(tile);
+
             if (tile.Board.PreviewingTiles.Count ==  0)
             {
                 tile.Board.BoardState = new BoardNoPreviewState(tile.Board);
             }
-
-            tile.Board.PreviewingTiles.Remove(tile);
         }
     }
 }

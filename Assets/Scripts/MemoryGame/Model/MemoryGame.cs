@@ -31,6 +31,6 @@ public class MemoryGame : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_board.BoardState.State);
+
     }
 }

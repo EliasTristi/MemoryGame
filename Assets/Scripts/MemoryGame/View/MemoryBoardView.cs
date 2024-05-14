@@ -22,7 +22,6 @@ namespace Memory.View
             {
                 _playerViewOne = value;
                 _playerViewOne.Model = new Player("Ben", 0, true);
-
             }
         }
         public PlayerView PlayerViewTwo

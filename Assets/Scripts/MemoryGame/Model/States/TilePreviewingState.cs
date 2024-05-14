@@ -8,7 +8,7 @@ namespace Memory.Models.States
     {
         public TilePreviewingState(Tile tile) : base(tile)
         {
-
+            State = TileStates.Preview;
         }
     }
 }
