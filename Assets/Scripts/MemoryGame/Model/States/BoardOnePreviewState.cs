@@ -29,8 +29,8 @@ namespace Memory.Models.States
             //update state of board and tile
             if (tile.Board.IsCombinationFound)
             {
-                tile.State = new TileFoundState(tile);
                 tile.Board.BoardState = new BoardTwoFoundState(tile.Board);
+                tile.State = new TileFoundState(tile);
                 tile.Board.IsCombinationFound = false;
             }
             else

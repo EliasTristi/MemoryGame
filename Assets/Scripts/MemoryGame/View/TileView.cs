@@ -45,8 +45,7 @@ namespace Memory.View
                 animationEnded.stringParameter = clip.name;
 
                 clip.AddEvent(animationEnded);
-            }
-                
+            }                
         }
 
         private void AnimationEndHandler()
