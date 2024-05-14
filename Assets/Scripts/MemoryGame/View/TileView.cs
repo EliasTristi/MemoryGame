@@ -12,6 +12,13 @@ namespace Memory.View
     public class TileView : ViewBaseClass<Tile>, IPointerDownHandler
     {
         public GameObject TileTopFace;
+        private Animator _animator;
+
+        private void Start()
+        {
+            _animator = GetComponent<Animator>();
+            AddAnimationEvents();
+        }
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -22,34 +29,43 @@ namespace Memory.View
         {
             if (e.PropertyName.Equals(nameof(Model.State)))
             {
-                StartCoroutine(StartAnimation());
-                Model.Board.BoardState.TileAnimationEnded(Model);
+                StartAnimation();
             }
         }
 
-        private IEnumerator StartAnimation()
+        private void AddAnimationEvents()
         {
-            var animator = GetComponent<Animator>();
-            
-            if (animator == null) yield break;
+            for (int i = 0; i < _animator.runtimeAnimatorController.animationClips.Length; i++)
+            {
+                var clip = _animator.runtimeAnimatorController.animationClips[i];
+                
+                AnimationEvent animationEnded = new AnimationEvent();
+                animationEnded.time = clip.length;
+                animationEnded.functionName = nameof(AnimationEndHandler);
+                animationEnded.stringParameter = clip.name;
 
+                clip.AddEvent(animationEnded);
+            }
+                
+        }
+
+        private void AnimationEndHandler()
+        {
+            Model.Board.BoardState.TileAnimationEnded(Model);
+        }
+
+        private void StartAnimation()
+        {
             var currentState = Model.State.State;
 
             switch (currentState)
             {
                 case TileStates.Hidden:
-                    animator.Play("Hidden");
+                    _animator.Play("Hidden");
                     break;
                 case TileStates.Preview:
-                    animator.Play("Shown");
+                    _animator.Play("Shown");
                     break;
-            }
-
-            animator.Update(0);
-
-            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
-            {
-                yield return null;
             }
         }
     }
