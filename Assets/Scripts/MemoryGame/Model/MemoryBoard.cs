@@ -125,6 +125,13 @@ namespace Memory.Models
             }
         }
 
+        public void ToggleActivePlayer()
+        {
+            PlayerOne.IsActivePlayer = !PlayerOne.IsActivePlayer;
+            PlayerTwo.IsActivePlayer = !PlayerTwo.IsActivePlayer;
+            Debug.Log($"1: {PlayerOne.IsActivePlayer}   2: {PlayerTwo.IsActivePlayer}");
+        }
+
         public override void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (propertyName.Equals(nameof(BoardState)))

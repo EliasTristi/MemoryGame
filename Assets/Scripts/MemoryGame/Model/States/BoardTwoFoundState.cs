@@ -19,7 +19,9 @@ namespace Memory.Models.States
 
         public override void TileAnimationEnded(Tile tile)
         {
-            tile.Board.PreviewingTiles.Remove(tile);
+            //tile.Board.PreviewingTiles.Remove(tile);
+            tile.Board.PreviewingTiles.Clear();
+
 
             //Debug.Log(tile.Board.PreviewingTiles.Count);
 
@@ -33,6 +35,7 @@ namespace Memory.Models.States
                 }
                 else
                 {
+                    tile.Board.ToggleActivePlayer();
                     tile.Board.BoardState = new BoardNoPreviewState(tile.Board);
                 }
             }

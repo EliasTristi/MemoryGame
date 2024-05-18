@@ -18,9 +18,8 @@ namespace Memory.Models.States
 
         public override void TileAnimationEnded(Tile tile)
         {
-            if (tile == tile.Board.PreviewingTiles[1])
+            if (tile.Board.PreviewingTiles.Count == 2 && tile == tile.Board.PreviewingTiles[1])
             {
-                //Debug.Log(tile.State);
                 tile.Board.BoardState = new BoardTwoHidingState(tile.Board);
 
                 foreach (var previewTile in tile.Board.PreviewingTiles)

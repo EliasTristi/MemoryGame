@@ -59,9 +59,9 @@ namespace Memory.View
                     break;
                 case nameof(Model.IsActivePlayer):
                     if (Model.IsActivePlayer) 
-                        _elapsedUI.color = Color.red;
+                        _nameUI.color = Color.red;
                     else
-                        _elapsedUI.color = Color.white;
+                        _nameUI.color = Color.white;
                     break;
             }
         }

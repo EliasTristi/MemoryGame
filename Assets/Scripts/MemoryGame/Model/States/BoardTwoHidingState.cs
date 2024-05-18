@@ -22,6 +22,7 @@ namespace Memory.Models.States
 
             if (tile.Board.PreviewingTiles.Count ==  0)
             {
+                tile.Board.ToggleActivePlayer();
                 tile.Board.BoardState = new BoardNoPreviewState(tile.Board);
             }
         }

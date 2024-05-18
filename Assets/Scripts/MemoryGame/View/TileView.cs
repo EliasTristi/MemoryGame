@@ -23,7 +23,7 @@ namespace Memory.View
         public void OnPointerDown(PointerEventData eventData)
         {
             Model.Board.BoardState.AddPreview(Model);
-            Debug.Log($"Tile State: {Model.State}");
+            //Debug.Log($"Tile State: {Model.State}");
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
