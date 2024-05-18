@@ -29,15 +29,21 @@ namespace Memory.Models.States
             //update state of board and tile
             if (tile.Board.IsCombinationFound)
             {
+
+                foreach ( var prevTile in tile.Board.PreviewingTiles)
+                {
+                    prevTile.State = new TileFoundState(prevTile);
+                }
+
                 tile.Board.BoardState = new BoardTwoFoundState(tile.Board);
-                tile.State = new TileFoundState(tile);
+                //Debug.Log(tile.Board.BoardState);
+
                 tile.Board.IsCombinationFound = false;
             }
             else
             {
                 tile.Board.BoardState = new BoardTwoPreviewState(tile.Board);
-                tile.State = new TilePreviewingState(tile);
-                
+                tile.State = new TilePreviewingState(tile);                
             }
         }
 

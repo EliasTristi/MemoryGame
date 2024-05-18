@@ -16,8 +16,8 @@ namespace Memory.Models.States
             if (tile.State.State != TileStates.Hidden) return;
 
             tile.Board.PreviewingTiles.Add(tile);
-            tile.State = new TilePreviewingState(tile);
             tile.Board.BoardState = new BoardOnePreviewState(tile.Board);
+            tile.State = new TilePreviewingState(tile);
         }
 
         public override void TileAnimationEnded(Tile tile)

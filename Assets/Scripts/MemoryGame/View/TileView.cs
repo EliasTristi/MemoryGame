@@ -23,6 +23,7 @@ namespace Memory.View
         public void OnPointerDown(PointerEventData eventData)
         {
             Model.Board.BoardState.AddPreview(Model);
+            Debug.Log($"Tile State: {Model.State}");
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -38,14 +39,25 @@ namespace Memory.View
             for (int i = 0; i < _animator.runtimeAnimatorController.animationClips.Length; i++)
             {
                 var clip = _animator.runtimeAnimatorController.animationClips[i];
-                
+
+                AnimationEvent animationStarted = new AnimationEvent();
+                animationStarted.time = 0f;
+                animationStarted.functionName = nameof(AnimationStartHandler);
+                animationStarted.stringParameter = clip.name;
+
                 AnimationEvent animationEnded = new AnimationEvent();
                 animationEnded.time = clip.length;
                 animationEnded.functionName = nameof(AnimationEndHandler);
                 animationEnded.stringParameter = clip.name;
 
+                clip.AddEvent(animationStarted);
                 clip.AddEvent(animationEnded);
             }                
+        }
+
+        private void AnimationStartHandler()
+        {
+
         }
 
         private void AnimationEndHandler()
@@ -62,6 +74,7 @@ namespace Memory.View
                 case TileStates.Hidden:
                     _animator.Play("Hidden");
                     break;
+                case TileStates.Found:
                 case TileStates.Preview:
                     _animator.Play("Shown");
                     break;

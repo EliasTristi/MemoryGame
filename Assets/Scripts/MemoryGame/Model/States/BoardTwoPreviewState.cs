@@ -20,21 +20,14 @@ namespace Memory.Models.States
         {
             if (tile == tile.Board.PreviewingTiles[1])
             {
-                Debug.Log(tile.State);
+                //Debug.Log(tile.State);
+                tile.Board.BoardState = new BoardTwoHidingState(tile.Board);
 
                 foreach (var previewTile in tile.Board.PreviewingTiles)
                 {
-                    Debug.Log($"{previewTile}");
+                    //Debug.Log($"{previewTile}");
                     previewTile.State = new TileHiddenState(previewTile);
                 }
-
-                tile.Board.BoardState = new BoardTwoHidingState(tile.Board);
-
-
-                //foreach (var prevTile in tile.Board.PreviewingTiles)
-                //{
-                //    prevTile.State = new TileHiddenState(prevTile);
-                //}
             }
         }
     }
