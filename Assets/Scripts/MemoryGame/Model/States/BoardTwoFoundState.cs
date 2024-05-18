@@ -21,13 +21,14 @@ namespace Memory.Models.States
         {
             tile.Board.PreviewingTiles.Remove(tile);
 
-            //tile.Board.PreviewingTiles.Clear();
+            //Debug.Log(tile.Board.PreviewingTiles.Count);
 
-            Debug.Log(tile.Board.PreviewingTiles.Count);
             if (tile.Board.PreviewingTiles.Count == 0)
             {
                 if (Board.Tiles.Where(t => t.State.State == TileStates.Hidden).Count() < 2)
                 {
+                    tile.Board.PlayerOne.IsActivePlayer = false;
+                    tile.Board.PlayerTwo.IsActivePlayer = false;
                     tile.Board.BoardState = new BoardFinishedState(tile.Board);
                 }
                 else

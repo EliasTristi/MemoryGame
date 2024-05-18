@@ -25,7 +25,6 @@ namespace Memory.Models.States
 
                 foreach (var previewTile in tile.Board.PreviewingTiles)
                 {
-                    //Debug.Log($"{previewTile}");
                     previewTile.State = new TileHiddenState(previewTile);
                 }
             }
