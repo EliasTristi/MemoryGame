@@ -6,6 +6,7 @@ using System.ComponentModel;
 using UnityEngine.EventSystems;
 using System;
 using Memory.Models.States;
+using Memory.Data;
 
 namespace Memory.View
 {
@@ -24,6 +25,7 @@ namespace Memory.View
         {
             Model.Board.BoardState.AddPreview(Model);
             //Debug.Log($"Tile State: {Model.State}");
+            Debug.Log(Model.MemoryCardID);
         }
 
         protected override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -32,6 +34,20 @@ namespace Memory.View
             {
                 StartAnimation();
             }
+            else if (e.PropertyName.Equals(nameof(Model.MemoryCardID)))
+            {
+                LoadImage();
+            }
+        }
+
+        private void LoadImage()
+        {
+            ImageRepository.Instance.GetProcessTexture(Model.MemoryCardID, LoadImage);
+        }
+
+        private void LoadImage(Texture2D texture)
+        {
+            TileTopFace.GetComponent<Renderer>().material.mainTexture = texture;
         }
 
         private void AddAnimationEvents()

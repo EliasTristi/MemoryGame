@@ -1,3 +1,4 @@
+using Memory.Data;
 using Memory.Models.States;
 using Memory.Utilities;
 using System.Collections;
@@ -110,19 +111,44 @@ namespace Memory.Models
 
         private void AssignMemoryCardIds()
         {
-            int j = 0;
+            ImageRepository repo = ImageRepository.Instance;
+            repo.ProcessImageIDs(AssignMemoryCardIds);
+        }
 
-            var shuffledTiles = ExtensionMethods.Shuffle(Tiles);
-            
-            for (int i = 0; i < shuffledTiles.Count; i++)
+        private void AssignMemoryCardIds(List<int> MemorycardIDS)
+        {
+            MemorycardIDS = ExtensionMethods.Shuffle(MemorycardIDS);
+            List<Tile> shuffledTiles = ExtensionMethods.Shuffle(Tiles);
+            int cardIndex = 0;
+            bool first = true;
+
+            foreach (Tile tile in shuffledTiles)
             {
-                shuffledTiles[i].MemoryCardID = j;
-                
-                if (i % 2 != 0) //odd
+                tile.MemoryCardID = MemorycardIDS[cardIndex];
+                if (first)
                 {
-                    j++;
+                    first = false;
+                }
+                else
+                {
+                    cardIndex++;
+                    first = true;
                 }
             }
+
+            //int j = 0;
+
+            //var shuffledTiles = ExtensionMethods.Shuffle(Tiles);
+
+            //for (int i = 0; i < shuffledTiles.Count; i++)
+            //{
+            //    shuffledTiles[i].MemoryCardID = j;
+
+            //    if (i % 2 != 0) //odd
+            //    {
+            //        j++;
+            //    }
+            //}
         }
 
         public void ToggleActivePlayer()
