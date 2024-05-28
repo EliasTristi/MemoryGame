@@ -155,14 +155,14 @@ namespace Memory.Models
         {
             PlayerOne.IsActivePlayer = !PlayerOne.IsActivePlayer;
             PlayerTwo.IsActivePlayer = !PlayerTwo.IsActivePlayer;
-            Debug.Log($"1: {PlayerOne.IsActivePlayer}   2: {PlayerTwo.IsActivePlayer}");
+            //Debug.Log($"1: {PlayerOne.IsActivePlayer}   2: {PlayerTwo.IsActivePlayer}");
         }
 
         public override void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (propertyName.Equals(nameof(BoardState)))
             {
-                Debug.Log(BoardState.State);
+                //Debug.Log(BoardState.State);
             }
         }
 

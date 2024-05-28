@@ -2,11 +2,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 namespace Memory.Data
 {
@@ -21,18 +18,42 @@ namespace Memory.Data
 
         private IEnumerator GetImageIDs(Action<List<int>> processIDs)
         {
-            UnityWebRequest uwrIDs = UnityWebRequest.Get(ImageURL + "/ids");
-            yield return uwrIDs.SendWebRequest();
-
-            if (uwrIDs.result != UnityWebRequest.Result.Success)
+            UnityWebRequest uwrids = UnityWebRequest.Get(ImageURL + "/ids");
+            yield return uwrids.SendWebRequest();
+            if (uwrids.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log("IMG REPO IDS: " + uwrIDs.error);
+                Debug.Log("ImageRepository.GetImageIds: " + uwrids.error);
             }
             else
             {
-                string json = uwrIDs.downloadHandler.text;
-                List<int> imageDBIDs = JsonConvert.DeserializeObject<List<int>>(json);
-                processIDs(imageDBIDs);
+                string json = uwrids.downloadHandler.text;
+                if (string.IsNullOrEmpty(json))
+                {
+                    Debug.LogError("ImageRepository.GetImageIds: Empty JSON response.");
+                }
+                else
+                {
+                    try
+                    {
+                        if (!json.TrimStart().StartsWith("{"))
+                        {
+                            json = "{\"ids\":" + json + "}";
+                        }
+                        IdList idList = JsonUtility.FromJson<IdList>(json);
+                        List<int> imagedbids = idList.ids;
+                        Debug.Log(json + " " + idList.ids.Count);
+                        //List<int> imagedbids = JsonConvert.DeserializeObject<List<int>>(json);
+                        foreach (int id in imagedbids)
+                        {
+                            Debug.Log("Id: " + id);
+                        }
+                        processIDs(imagedbids);
+                    }
+                    catch (JsonException ex)
+                    {
+                        Debug.LogError("ImageRepository.GetImageIds: JSON deserialization error - " + ex.Message);
+                    }
+                }
             }
         }
 
@@ -55,5 +76,10 @@ namespace Memory.Data
                 loadImage(texture);
             }
         }
+    }
+
+    public class IdList
+    {
+        public List<int> ids;
     }
 }
