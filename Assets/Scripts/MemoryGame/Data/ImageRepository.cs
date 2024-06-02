@@ -13,12 +13,12 @@ namespace Memory.Data
 
         public void ProcessImageIDs(Action<List<int>> processIDs)
         {
-            StartCoroutine(GetImageIDs(processIDs));
+            StartCoroutine(GetImageIDs(processIDs, "exam"));
         }
 
-        private IEnumerator GetImageIDs(Action<List<int>> processIDs)
+        private IEnumerator GetImageIDs(Action<List<int>> processIDs, string theme)
         {
-            UnityWebRequest uwrids = UnityWebRequest.Get(ImageURL + "/ids");
+            UnityWebRequest uwrids = UnityWebRequest.Get(ImageURL + "/ids/" + theme);
             yield return uwrids.SendWebRequest();
             if (uwrids.result != UnityWebRequest.Result.Success)
             {
