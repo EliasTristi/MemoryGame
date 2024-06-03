@@ -4,8 +4,10 @@ using Memory.View;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MemoryGame : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class MemoryGame : MonoBehaviour
     [SerializeField] private Material[] _materials;
     [SerializeField] private GameObject _playerOne;
     [SerializeField] private GameObject _playerTwo;
+    [SerializeField] private Button _cheatButton;
 
     void Awake()
     {
@@ -29,8 +32,25 @@ public class MemoryGame : MonoBehaviour
         boardView.SetUpMemoryBoard(_board, _tilePrefab, _materials);
     }
 
-    void Update()
+    private void Start()
     {
+        _cheatButton.onClick.AddListener(CheatButton);
+    }
 
+    private void CheatButton()
+    {
+        if (_board.PreviewingTiles.Count == 1 && _board.BoardState.State == BoardStates.OnePreview)
+        {
+            var firstTile = _board.PreviewingTiles[0];
+            var tileID = firstTile.MemoryCardID;
+
+            var allTiles = _board.Tiles;
+            allTiles.Remove(firstTile);
+
+            var secondTile = allTiles.Where(t => t.MemoryCardID == tileID).FirstOrDefault();
+
+            secondTile.Board.BoardState.AddPreview(secondTile);
+
+        }
     }
 }

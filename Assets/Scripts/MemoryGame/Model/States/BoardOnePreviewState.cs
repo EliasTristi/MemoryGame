@@ -18,6 +18,10 @@ namespace Memory.Models.States
             if (tile.State.State != TileStates.Hidden) return;
             tile.Board.PreviewingTiles.Add(tile);
 
+            //check if only one tile in previewingTiles
+
+
+
             //checking if all tiles have the same ID
             var firstTile = tile.Board.PreviewingTiles[0];
             var combinationFound = tile.Board.PreviewingTiles.All(t => t.MemoryCardID == firstTile.MemoryCardID);
