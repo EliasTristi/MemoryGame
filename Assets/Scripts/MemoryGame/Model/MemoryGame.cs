@@ -1,3 +1,4 @@
+using Memory.Data;
 using Memory.Models;
 using Memory.Models.States;
 using Memory.View;
@@ -50,7 +51,8 @@ public class MemoryGame : MonoBehaviour
             var secondTile = allTiles.Where(t => t.MemoryCardID == tileID).FirstOrDefault();
 
             secondTile.Board.BoardState.AddPreview(secondTile);
-
+            var repo = ImageRepository.Instance;
+            repo.AddCheat(tileID);
         }
     }
 }

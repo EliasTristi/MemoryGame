@@ -76,6 +76,28 @@ namespace Memory.Data
                 loadImage(texture);
             }
         }
+
+        public void AddCheat(int imageID)
+        {
+            StartCoroutine(PostCheat(imageID));
+        }
+
+        private IEnumerator PostCheat(int imageID)
+        {
+            UnityWebRequest uwr = UnityWebRequest.PostWwwForm(ImageURL + "/cheats?imageID=" + imageID, "");
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log("ImageRepository.AddCheat: " + uwr.error);
+            }
+            else
+            {
+                string response = uwr.downloadHandler.text;
+                int combinationId = int.Parse(response);
+                Debug.Log("THis is the cheat image id: " + combinationId);
+            }
+        }
     }
 
     public class IdList
