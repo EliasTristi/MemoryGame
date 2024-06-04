@@ -8,6 +8,7 @@ namespace Memory.Models.States
     {
         Hidden,
         Preview,
-        Found
+        Found,
+        Resetting
     }
 }

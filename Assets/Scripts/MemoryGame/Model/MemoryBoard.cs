@@ -21,6 +21,9 @@ namespace Memory.Models
         private Player _playerOne;
         private Player _playerTwo;
 
+        //exam var
+        private List<Tile> _resetTiles = new List<Tile>();
+
         //properties
         public int Rows
         {
@@ -79,6 +82,18 @@ namespace Memory.Models
             {
                 if (_boardState == value) return;
                 _boardState = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //exam properties
+        public List<Tile> ResetTiles
+        {
+            get => _resetTiles;
+            set
+            {
+                if (_resetTiles == value) return;
+                _resetTiles = value;
                 OnPropertyChanged();
             }
         }
@@ -162,7 +177,7 @@ namespace Memory.Models
         {
             if (propertyName.Equals(nameof(BoardState)))
             {
-                //Debug.Log(BoardState.State);
+                Debug.Log(BoardState.State);
             }
         }
 

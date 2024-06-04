@@ -11,6 +11,7 @@ namespace Memory.Models.States
         TwoPreview,
         TwoFound,
         TwoHiding,
-        Finished
+        Finished,
+        Resetting
     }
 }

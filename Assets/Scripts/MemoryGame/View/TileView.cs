@@ -24,7 +24,7 @@ namespace Memory.View
         public void OnPointerDown(PointerEventData eventData)
         {
             Model.Board.BoardState.AddPreview(Model);
-            //Debug.Log($"Tile State: {Model.State}");
+            Debug.Log($"Tile State: {Model.State}");
             Debug.Log(Model.MemoryCardID);
         }
 
@@ -87,6 +87,7 @@ namespace Memory.View
 
             switch (currentState)
             {
+                case TileStates.Resetting:
                 case TileStates.Hidden:
                     _animator.Play("Hidden");
                     break;

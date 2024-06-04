@@ -10,6 +10,7 @@ namespace Memory.Data
     public class ImageRepository : Singleton<ImageRepository>
     {
         string ImageURL = "http://localhost/MemoryAPI/api/Image";
+        string ResetURL = "http://localhost/MemoryAPI/api/ResetGame";
 
         public void ProcessImageIDs(Action<List<int>> processIDs)
         {
@@ -41,12 +42,12 @@ namespace Memory.Data
                         }
                         IdList idList = JsonUtility.FromJson<IdList>(json);
                         List<int> imagedbids = idList.ids;
-                        Debug.Log(json + " " + idList.ids.Count);
+                        //Debug.Log(json + " " + idList.ids.Count);
                         //List<int> imagedbids = JsonConvert.DeserializeObject<List<int>>(json);
-                        foreach (int id in imagedbids)
-                        {
-                            Debug.Log("Id: " + id);
-                        }
+                        //foreach (int id in imagedbids)
+                        //{
+                        //    Debug.Log("Id: " + id);
+                        //}
                         processIDs(imagedbids);
                     }
                     catch (JsonException ex)
@@ -74,6 +75,28 @@ namespace Memory.Data
             {
                 Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
                 loadImage(texture);
+            }
+        }
+
+        public void AddReset(string playerName)
+        {
+            StartCoroutine(PostReset(playerName));
+        }
+
+        private IEnumerator PostReset(string playerName)
+        {
+            UnityWebRequest uwr = UnityWebRequest.PostWwwForm(ResetURL + "/" + playerName, "");
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log("ImageRepository.AddReset: " + uwr.error);
+            }
+            else
+            {
+                string response = uwr.downloadHandler.text;
+                //int combinationId = int.Parse(response);
+                Debug.Log("This is the reset: " + response + " " + playerName);
             }
         }
     }
