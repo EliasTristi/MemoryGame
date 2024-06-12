@@ -11,6 +11,7 @@ namespace Memory.Data
     {
         string ImageURL = "http://localhost/MemoryAPI/api/Image";
         string ResetURL = "http://localhost/MemoryAPI/api/ResetGame";
+        string CombinationURL = "http://localhost/MemoryAPI/api/Combination";
 
         public void ProcessImageIDs(Action<List<int>> processIDs)
         {
@@ -97,6 +98,28 @@ namespace Memory.Data
                 string response = uwr.downloadHandler.text;
                 //int combinationId = int.Parse(response);
                 Debug.Log("This is the reset: " + response + " " + playerName);
+            }
+        }
+
+        public void AddCombination(int ImageID)
+        {
+            StartCoroutine(PostCombination(ImageID));
+        }
+
+        private IEnumerator PostCombination(int ImageID)
+        {
+            UnityWebRequest uwr = UnityWebRequest.PostWwwForm(CombinationURL + "/" + ImageID, "");
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                //error
+                Debug.Log("ImageRepository.AddCombination: " + uwr.error);
+            }
+            else
+            {
+                //succes
+                Debug.Log("this was a great success");
             }
         }
     }
