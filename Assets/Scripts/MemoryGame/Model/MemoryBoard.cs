@@ -150,20 +150,6 @@ namespace Memory.Models
                     first = true;
                 }
             }
-
-            //int j = 0;
-
-            //var shuffledTiles = ExtensionMethods.Shuffle(Tiles);
-
-            //for (int i = 0; i < shuffledTiles.Count; i++)
-            //{
-            //    shuffledTiles[i].MemoryCardID = j;
-
-            //    if (i % 2 != 0) //odd
-            //    {
-            //        j++;
-            //    }
-            //}
         }
 
         public void ToggleActivePlayer()
